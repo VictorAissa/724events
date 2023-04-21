@@ -12,33 +12,41 @@ const PER_PAGE = 9;
 const EventList = () => {
     const { data, error } = useData();
     const [type, setType] = useState();
-    // eslint-disable-next-line no-unused-vars
     const [currentPage, setCurrentPage] = useState(1);
-    // const filteredEvents = ((!type ? data?.events : data?.events) || []).filter(
-    //     (event, index) => {
-    //         if (
-    //             (currentPage - 1) * PER_PAGE <= index &&
-    //             PER_PAGE * currentPage > index
-    //         ) {
-    //             return true;
-    //         }
-    //         return false;
+
+    // const filteredEvents = (
+    //     (!type
+    //       ? data?.events
+    //       : data?.events) || []
+    //   ).filter((event, index) => {
+    //     if (
+    //       (currentPage - 1) * PER_PAGE <= index &&
+    //       PER_PAGE * currentPage > index
+    //     ) {
+    //       return true;
     //     }
-    // );
-    const filteredEvents = data?.events.filter((event) => {
-        // eslint-disable-next-line no-unused-expressions
-        if (event.type === type || !type) {
-            return true;
-        }
-        return false;
-    });
-    console.log(filteredEvents && filteredEvents);
-    // const changeType = (evtType) => {
-    //     setCurrentPage(1);
-    //     setType(evtType);
-    // };
+    //     return false;
+    //   });
+    const filteredEvents = data?.events
+        .filter((event) => event.type === type || !type)
+        .filter((event, index) => {
+            if (
+                (currentPage - 1) * PER_PAGE <= index &&
+                PER_PAGE * currentPage > index
+            ) {
+                return true;
+            }
+            return false;
+        });
+
+    const changeType = (evtType) => {
+        setCurrentPage(1);
+        setType(evtType);
+    };
+
     const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
     const typeList = new Set(data?.events.map((event) => event.type));
+
     return (
         <>
             {error && <div>An error occured</div>}
@@ -49,11 +57,9 @@ const EventList = () => {
                     <h3 className="SelectTitle">Catégories</h3>
                     <Select
                         selection={Array.from(typeList)}
-                        // onChange={(value) =>
-                        //     value ? changeType(value) : changeType(null)
-                        // }
-                        type={type}
-                        setType={setType}
+                        onChange={(value) =>
+                            value ? changeType(value) : changeType(null)
+                        }
                     />
                     <div id="events" className="ListContainer">
                         {filteredEvents.map((event) => (
@@ -76,8 +82,7 @@ const EventList = () => {
                     <div className="Pagination">
                         {[...Array(pageNumber || 0)].map((_, n) => (
                             <a
-                                // eslint-disable-next-line react/no-array-index-key
-                                key={n}
+                                key={`page-number-${n + 1}`}
                                 href="#events"
                                 onClick={() => setCurrentPage(n + 1)}
                             >

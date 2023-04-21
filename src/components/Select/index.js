@@ -7,22 +7,19 @@ import "./style.scss";
 
 const Select = ({
     selection,
-    // onChange,
+    onChange,
     name,
     titleEmpty,
     label,
-    // type = "normal",
-    type,
-    setType,
+    type = "normal",
 }) => {
-    // eslint-disable-next-line no-unused-vars
     const [value, setValue] = useState();
     const [collapsed, setCollapsed] = useState(true);
-    // const changeValue = (newValue) => {
-    //     onChange();
-    //     setValue(newValue);
-    //     setCollapsed(newValue);
-    // };
+    const changeValue = (newValue) => {
+        onChange(newValue);
+        setValue(newValue);
+        setCollapsed(newValue);
+    };
     return (
         <div className={`SelectContainer ${type}`} data-testid="select-testid">
             {label && <div className="label">{label}</div>}
@@ -40,8 +37,7 @@ const Select = ({
                     {!collapsed && (
                         <>
                             {!titleEmpty && (
-                                // <li onClick={() => changeValue(null)}>
-                                <li onClick={() => setType(null)}>
+                                <li onClick={() => changeValue(null)}>
                                     <input
                                         defaultChecked={!value}
                                         name="selected"
@@ -51,8 +47,7 @@ const Select = ({
                                 </li>
                             )}
                             {selection.map((s) => (
-                                // <li key={s} onClick={() => changeValue(s)}>
-                                <li key={s} onClick={() => setType(s)}>
+                                <li key={s} onClick={() => changeValue(s)}>
                                     <input
                                         defaultChecked={value === s}
                                         name="selected"
@@ -98,21 +93,19 @@ const Arrow = () => (
 
 Select.propTypes = {
     selection: PropTypes.arrayOf(PropTypes.string).isRequired,
-    // onChange: PropTypes.func,
+    onChange: PropTypes.func,
     name: PropTypes.string,
     titleEmpty: PropTypes.bool,
     label: PropTypes.string,
     type: PropTypes.string,
-    setType: PropTypes.string,
 };
 
 Select.defaultProps = {
-    // onChange: () => null,
+    onChange: () => null,
     titleEmpty: false,
     label: "",
     type: "normal",
     name: "select",
-    setType: "",
 };
 
 export default Select;
