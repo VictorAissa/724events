@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useData } from "../../contexts/DataContext";
 import EventCard from "../../components/EventCard";
 import Select from "../../components/Select";
-import { useData } from "../../contexts/DataContext";
 import Modal from "../Modal";
 import ModalEvent from "../ModalEvent";
 
@@ -62,7 +62,7 @@ const EventList = () => {
                         }
                     />
                     <div id="events" className="ListContainer">
-                        {filteredEvents.map((event) => (
+                        {filteredEvents?.map((event) => (
                             <Modal
                                 key={event.id}
                                 Content={<ModalEvent event={event} />}

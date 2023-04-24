@@ -32,12 +32,6 @@ const EventCard = ({
     </div>
 );
 
-const dateObject = new Date(
-    "Mon Jul 29 2022 22:28:45 GMT+0200 (heure d’été d'Europe centrale)"
-);
-
-console.log(displayMonth(dateObject));
-
 EventCard.propTypes = {
     imageSrc: PropTypes.string.isRequired,
     imageAlt: PropTypes.string,
