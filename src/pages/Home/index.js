@@ -132,7 +132,7 @@ const Page = () => {
             </main>
             <footer className="row">
                 <div className="col presta">
-                    <h3>Notre derniére prestation</h3>
+                    <h3>Notre dernière prestation</h3>
                     <EventCard
                         imageSrc={last?.cover}
                         title={last?.title}
@@ -164,7 +164,7 @@ const Page = () => {
                 <div className="col description">
                     <Logo size="large" />
                     <p>
-                        Une agence événementielle propose des prestations de
+                        Une agence événementielle qui propose des prestations de
                         service spécialisées dans la conception et
                         l&apos;organisation de divers événements tels que des
                         événements festifs, des manifestations sportives et
