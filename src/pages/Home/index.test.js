@@ -2,41 +2,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 // import { api, DataProvider } from "../../contexts/DataContext";
 import Page from "./index";
 
-// const data = {
-//     events: [
-//         {
-//             id: 1,
-//             type: "soirée entreprise",
-//             date: "2022-04-29T20:28:45.744Z",
-//             title: "Conférence #productCON",
-//             cover: "/images/stem-list-EVgsAbL51Rk-unsplash.png",
-//             description:
-//                 "Présentation des outils analytics aux professionnels du secteur",
-//             nb_guesses: 1300,
-//             periode: "24-25-26 Février",
-//             prestations: [
-//                 "1 espace d’exposition",
-//                 "1 scéne principale",
-//                 "2 espaces de restaurations",
-//                 "1 site web dédié",
-//             ],
-//         },
-
-//         {
-//             id: 2,
-//             type: "forum",
-//             date: "2022-04-29T20:28:45.744Z",
-//             title: "Forum #productCON",
-//             cover: "/images/stem-list-EVgsAbL51Rk-unsplash.png",
-//             description:
-//                 "Présentation des outils analytics aux professionnels du secteur",
-//             nb_guesses: 1300,
-//             periode: "24-25-26 Février",
-//             prestations: ["1 espace d’exposition", "1 scéne principale"],
-//         },
-//     ],
-// };
-
 describe("When Form is created", () => {
     it("a list of fields card is displayed", async () => {
         render(<Page />);
@@ -65,11 +30,8 @@ describe("When Form is created", () => {
 describe("When a page is created", () => {
     it("a list of events is displayed", async () => {
         render(<Page />);
-        const eventCards = await screen.getAllByTestId("card-testid");
-        const largeEventCards = eventCards.filter(
-            (card) => !card.classList.contains("EventCard--small")
-        );
-        expect(largeEventCards.length).toBe(9);
+        const eventCardImages = screen.getAllByTestId("card-image-testid");
+        expect(eventCardImages.length).toBe(10);
     });
     it("a list a people is displayed", async () => {
         render(<Page />);

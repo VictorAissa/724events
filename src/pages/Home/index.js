@@ -21,6 +21,13 @@ const Page = () => {
         return previousDate > currentDate ? previousEvent : currentEvent;
     });
 
+    const lastProps = {
+        cover: "",
+        title: "",
+        date: "",
+        ...last,
+    };
+
     return (
         <>
             <header>
@@ -134,9 +141,9 @@ const Page = () => {
                 <div className="col presta">
                     <h3>Notre dernière prestation</h3>
                     <EventCard
-                        imageSrc={last?.cover}
-                        title={last?.title}
-                        date={new Date(last?.date)}
+                        imageSrc={lastProps.cover}
+                        title={lastProps.title}
+                        date={new Date(lastProps.date)}
                         small
                         label="boom"
                     />
