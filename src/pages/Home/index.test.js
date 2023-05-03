@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-// import { api, DataProvider } from "../../contexts/DataContext";
 import Page from "./index";
 
 describe("When Form is created", () => {
@@ -35,17 +34,17 @@ describe("When a page is created", () => {
     });
     it("a list a people is displayed", async () => {
         render(<Page />);
-        const peopleCards = await screen.getAllByTestId("people-card-testid");
+        const peopleCards = screen.getAllByTestId("people-card-testid");
         expect(peopleCards.length).toBe(6);
     });
     it("a footer is displayed", async () => {
         render(<Page />);
-        await screen.getByText("Notre dernière prestation");
-        await screen.getByText("Contactez-nous");
+        screen.getByText("Notre dernière prestation");
+        screen.getByText("Contactez-nous");
     });
     it("an event card, with the last event, is displayed", async () => {
         render(<Page />);
-        const eventCards = await screen.getAllByTestId("card-testid");
+        const eventCards = screen.getAllByTestId("card-testid");
         const smallEventCard = eventCards.filter((card) =>
             card.classList.contains("EventCard--small")
         );

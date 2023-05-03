@@ -13,14 +13,17 @@ import Modal from "../../containers/Modal";
 import "./style.scss";
 
 const Page = () => {
+    /* ********** */
     const { data } = useData();
 
+    /* ********** */
     const last = data?.events.reduce((previousEvent, currentEvent) => {
         const previousDate = new Date(previousEvent.date);
         const currentDate = new Date(currentEvent.date);
         return previousDate > currentDate ? previousEvent : currentEvent;
     });
 
+    /* ********** */
     const lastProps = {
         cover: "",
         title: "",
@@ -141,6 +144,7 @@ const Page = () => {
                 <div className="col presta">
                     <h3>Notre dernière prestation</h3>
                     <EventCard
+                        /* ********** */
                         imageSrc={lastProps.cover}
                         title={lastProps.title}
                         date={new Date(lastProps.date)}
